@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Apka_BMI</string>
+    <string name="app_name">Kalkulator BMI</string>
+    <string name="title_activity_receive">Wynik</string>
 </resources>
+

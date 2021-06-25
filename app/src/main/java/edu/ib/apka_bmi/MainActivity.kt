@@ -4,56 +4,48 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
+import android.widget.EditText
 
-const val EXTRA_MESSAGE="edu.ib.Apka_BMI.MESSAGE"
+
+const val EXTRA_MESSAGE="edu.ib.apka_bmi.MESSAGE"
 
 class MainActivity : AppCompatActivity() {
-
-    private var obliczButton:Button? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        obliczButton=findViewById<Button>(R.id.oblicz)
-
-        obliczButton?.setOnClickListener {
-            val intent = Intent(this, Wynik::class.java)
-            startActivity(intent)
-
-            bmi()
-
 
         }
 
 
+    fun bmi(view:View) {
+
+        val input = findViewById<EditText>(R.id.waga)
+        val input2 = findViewById<EditText>(R.id.wzrost)
+        val userInput = input.text.toString().toDouble()
+        val userInput2 = input2.text.toString().toDouble()
+        val wynik = oblicz(userInput, userInput2)
+        val rezultat = String.format("%.2f", wynik)
+
+
+        val intent = Intent(this, Rezultat::class.java).
+
+                apply{
+                    putExtra(EXTRA_MESSAGE, rezultat)
+                }
+
+                startActivity(intent)
+
+
     }
 
-    private fun bmi(){
-        val input=findViewById<TextView>(R.id.waga) //zczytujemy z pola tekstowego o nazwie edNumber1
-        val userInput = input.text.toString()
-        val input2= findViewById<TextView>(R.id.wzrost)
-        val userInput2 = input2.text.toString()
 
 
-        val answer=oblicz(userInput.toDouble(), userInput2.toDouble()).toString()
-        val message = answer.toString()
+    fun oblicz(x:Double, y:Double): Double{
 
-        val intent2= Intent(this,Wynik::class.java ).
-        apply{
-            putExtra(EXTRA_MESSAGE,message)
-        }
-        startActivity(intent2)
-    }
+      return x/(y*y)
+
+   }
 
 
-
-
-    private fun oblicz(x:Double, y:Double): Double{
-
-        var z: Double
-        z = x/(y*y)
-        return z
-    }
 }
