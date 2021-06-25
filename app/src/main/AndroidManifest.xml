@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.ib.apka_bmi">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-feature android:name="android.hardware.type.watch" />
 
     <application
         android:allowBackup="true"
@@ -14,11 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Apka_BMI">
         <activity android:name=".Rezultat"
-         android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
+         android:parentActivityName=".MainActivity"> </activity>
 
         <activity android:name=".MainActivity">
             <intent-filter>
