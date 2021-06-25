@@ -10,8 +10,8 @@ class Rezultat : AppCompatActivity() {
         setContentView(R.layout.activity_rezultat)
 
 
-        val wiadomosc = intent.getStringExtra(EXTRA_MESSAGE)
-        val textView = findViewById<TextView>(R.id.wynik).apply {
+        val wiadomosc = intent.getStringExtra("Wynik")   //wyświetlanie wyniku BMI (rezultat), który został obliczony w aktywności MainActivity
+        val odpowiedz = findViewById<TextView>(R.id.wynik).apply {
             text = wiadomosc
         }
 

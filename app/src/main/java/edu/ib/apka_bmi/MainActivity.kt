@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.EditText
 
 
-const val EXTRA_MESSAGE="edu.ib.apka_bmi.MESSAGE"
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,26 +21,25 @@ class MainActivity : AppCompatActivity() {
 
         val input = findViewById<EditText>(R.id.waga)
         val input2 = findViewById<EditText>(R.id.wzrost)
-        val userInput = input.text.toString().toDouble()
-        val userInput2 = input2.text.toString().toDouble()
-        val wynik = oblicz(userInput, userInput2)
-        val rezultat = String.format("%.2f", wynik)
+        val userInput = input.text.toString().toDouble()  //zczytanie z pola "waga" wartości wagi
+        val userInput2 = input2.text.toString().toDouble() //zczytanie z pola "wzrost" wartości wzrostu
+        val wynik = oblicz(userInput, userInput2)  //odwołanie się do funkcji oblicz w celu wyliczenia BMI na podstawie wprowadzonych przez użytkownika danych
+        val rezultat = String.format("%.2f", wynik)  //zaokrąglenie wyniku do dwóch miejsc po przecinku
 
 
-        val intent = Intent(this, Rezultat::class.java).
+        val intent = Intent(this, Rezultat::class.java).   //uruchomienie drugiej aktywności, w które będzie wyświetlany rezultat - wynik BMI
 
                 apply{
-                    putExtra(EXTRA_MESSAGE, rezultat)
+                    putExtra("Wynik", rezultat)
                 }
 
                 startActivity(intent)
-
 
     }
 
 
 
-    fun oblicz(x:Double, y:Double): Double{
+    fun oblicz(x:Double, y:Double): Double{  //funkcja służąca do obliczenia ilorazu wagi i kwadratu wzrostu
 
       return x/(y*y)
 
